@@ -3,14 +3,16 @@
 #include <vector>
 #include <float.h>
 #include <math.h>
-#define ld double
+#define ld long double
 #define pb push_back
 #define mp make_pair
 using namespace std;
 ld n, m, k;
 
 ld fD(pair<ld, ld> v1, pair<ld, ld> v2) {
-    return hypot(v2.first - v1.first, v2.second - v1.second);
+    ld dx = abs(v1.first - v2.first);
+    ld dy = abs(v1.second - v2.second);
+    return sqrt(dx * dx + dy * dy);
 }
 
 ld solve(vector<pair<ld, ld> > v1, vector<pair<ld, ld> > v2, vector<pair<ld, ld> > vK, pair<ld, ld> st, bool rem) {
@@ -49,9 +51,9 @@ ld solve(vector<pair<ld, ld> > v1, vector<pair<ld, ld> > v2, vector<pair<ld, ld>
 
 int main() {
     std::cout << std::fixed << std::showpoint;
-    std::cout << std::setprecision(5);
-    // freopen("in.txt", "r", stdin);
-    // freopen("out.txt", "w", stdout);
+    std::cout << std::setprecision(20);
+    //freopen("in.txt", "r", stdin);
+   // freopen("out.txt", "w", stdout);
     int T;
     cin >> T;
 
@@ -80,6 +82,6 @@ int main() {
             cin >> temp1 >> temp2;
             vK.pb(mp(temp1, temp2));
         }
-        printf("%.10f\n", min(solve(v1, v2,  vK, st, false), solve(v2, v1, vK, st, true)));  
+        cout << min(solve(v1, v2,  vK, st, false), solve(v2, v1, vK, st, true)) << '\n';
     }
 }
