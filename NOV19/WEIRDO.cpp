@@ -4,13 +4,8 @@
 #include <math.h>
 #include <string.h>
 #include <iomanip>
+#define ld long double
 using namespace std;
-
-inline double round( double val )
-{
-    if( val < 0 ) return ceil(val - 0.5);
-    return floor(val + 0.5);
-}
 
 int main() {
     //    freopen("in.txt", "r", stdin);
@@ -19,8 +14,8 @@ int main() {
     int T, n;
     cin >> T;
     int vo, con;
-    double prodA, prodB;
-    unordered_map<char, pair<double, double> > mpA, mpB;
+    ld prodA, prodB;
+    unordered_map<char, pair<ld, ld> > mpA, mpB;
 
     while (T--) {
         mpA.clear();
@@ -56,25 +51,25 @@ int main() {
                 }
             }
         }
-        double n1 = 1.0, n2 = 1.0, n3 = 1.0, n4 = 1.0;
+        ld n1 = 1.0, n2 = 1.0, n3 = 1.0, n4 = 1.0;
 
         for (auto t = mpA.begin(); t!=mpA.end(); t++) {
-            n1 = n1 * t->second.first;
-            n2 = n2 * pow(t->second.second, 2.0);
+            n1 = n1 * log(t->second.first);
+            n2 = n2 * log(t->second.second * t->second.second);
         }
 
         for (auto t = mpB.begin(); t!=mpB.end(); t++) {
-            n3 = n3 * t->second.first;
-            n4 = n4 * pow(t->second.second, 2.0);
+            n3 = n3 * log(t->second.first);
+            n4 = n4 * log(t->second.second * t->second.second);
         }
-        double ra1 = round((n1 * n4) * 1000.0) / 1000.0;
-        double ra2 = round((n2 * n3) * 1000.0) / 1000.0;
+        ld ra1 = exp(n1 * n4);
+        ld ra2 = exp(n2 * n3);
 
-        double rat = (double) ra1/ra2;
+        ld rat = (ld) ra1/ra2;
 
         if (rat > 1e7)
             printf("Infinity\n");
         else
-            printf("%.7f\n", rat);
+            printf("%.7Lf\n", rat);
     }
 }
