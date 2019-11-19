@@ -24,5 +24,34 @@ typedef unordered_map<int, int> ump;
 
 
 int main() {
-    vi 
+    vi v;
+    int n, k, T, temp, res;
+    bool done;
+    cin >> T;
+    while(T--) {
+        v.clear();
+        cin >> n >> k;
+        for (int t=1;t<=n;t++) {
+            cin >> temp;
+            v.push_back(temp);
+        }
+        for (int t=0;t<n;t++) {
+            temp = v[t];  
+            if (temp >= k) {
+                res += temp - k;
+            } else {
+                if (temp + res < k) {
+                    cout << "NO " << t+1 << '\n';
+                    done = true;
+                    break;
+                } else {
+                res -= k - temp;
+                }
+            }
+        }
+        if (!done)
+            cout << "YES" << '\n';
+        res = 0;
+        done= false;
+    }
 }
