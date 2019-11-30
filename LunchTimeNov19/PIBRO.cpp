@@ -22,6 +22,24 @@ typedef pair<int, int> pr;
 typedef map<int, int> mp;
 typedef unordered_map<int, int> ump;
 
+int Kadane(string s, int n) {
+    int maxC = INT_MIN, ct = 0;
+    for (int t=0;t<n;t++) {
+        if (ct < 0)
+            ct = 0;
+
+        if (s[t] == '1')
+            ++ct;
+        else
+            ct = 0;
+
+        if (ct > maxC) {
+            maxC = ct;
+        }
+    }
+    return maxC;
+}
+
 int main() {
     // freopen("in.txt", "r", stdin);
     FASTER;
@@ -30,7 +48,6 @@ int main() {
     cin >> T;
 
     while (T--) {
-        s = "";
         cin >> n >> k;
         cin >> s;
         int ct = 0, maxC = INT_MIN;
@@ -63,34 +80,7 @@ int main() {
                 s2[ed + in] = '1';
 
         }
-        ct = 0;
-        int ct1 = 0;
-        maxC1 = INT_MIN;
-        for (int t=0;t<n;t++) {
-            if (ct < 0)
-                ct = 0;
-            
-            if (ct1 < 0)
-                ct1 = 0;
-
-            if (s1[t] == '1')
-                ++ct;
-            else
-                ct = 0;
-
-            if (s2[t] == '1')
-                ++ct1;
-            else
-                ct1 = 0;
-
-            if (ct > maxC) {
-                maxC = ct;
-            }
-            if (ct1 > maxC1) {
-                maxC1 = ct1;
-            }
-        }
-        cout << max(maxC1, maxC) << '\n';
+        cout << max(Kadane(s1, n), Kadane(s2, n)) << '\n';
     }
 
 
