@@ -41,7 +41,7 @@ int Kadane(string s, int n) {
 }
 
 int main() {
-    // freopen("in.txt", "r", stdin);
+    freopen("in.txt", "r", stdin);
     FASTER;
     string s;
     int T, n, k;
@@ -74,7 +74,7 @@ int main() {
         string s1 = s, s2 = s;
         while (k-- && ((st - in >= 0) || (ed + in < n))) {
             ++in;
-            if (st - in > 0)
+            if (st - in >= 0)
                 s1[st-in] = '1';
             if (ed + in < n)
                 s2[ed + in] = '1';
