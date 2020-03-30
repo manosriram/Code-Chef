@@ -49,15 +49,14 @@ int main() {
                 break;
             }
         }
+
         if ((ls - fs + 1) >= n/2)
             cout << 0 << '\n';
         else
             cout << ((n/2) - (ls - fs + 1)) + 1 << '\n';
     }
 
-
 #ifndef ONLINE_JUDGE
     cout << "Time Taken: " << (double)(clock() - tStart)/CLOCKS_PER_SEC << endl;
 #endif
-
 }
