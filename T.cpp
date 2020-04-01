@@ -1,4 +1,4 @@
-// g++ -std=c++17 DIGJUMP.cpp -o a.out && ./a.out < in
+// g++ -std=c++17 T.cpp -o a.out && ./a.out < in
 #include <iostream>
 #include <map>
 #include <math.h>
@@ -28,34 +28,13 @@ int main() {
     freopen("out", "w", stdout);
     freopen("err", "w", stderr);
 #endif
+    ll T;
     string s;
-<<<<<<< HEAD
-
-=======
     cin >> s;
-    int n = s.length();
-    stack<int> *ss = new stack<int>[10];
-    for (int t=0;t<n;++t)
-        ss[s[t] - '0'].push(t);
+    cout << "Hello " << s << endl;
 
-    int in = n - 1, jmps = 0;
-    int nwIn = in;
-    while (in > 0) {
-        cout << in << " ";
-        ++jmps;
-        if (!ss[s[in] - '0'].empty()) 
-            ss[s[in] - '0'].pop();
 
-        if (!ss[s[in] - '0'].empty()) {
-            in = ss[s[in] - '0'].top();
-        }
-        else in--;
-        for (int t=nwIn;t>=in;--t) if(!ss[s[t] - '0'].empty()) ss[s[t] - '0'].pop();
 
-        nwIn = in;
-    }
-    cout << jmps << endl;
->>>>>>> 9ab92c5c24a504e91c1960a273f4277667a88270
 
 #ifndef ONLINE_JUDGE
     cout << "Time Taken: " << (double)(clock() - tStart)/CLOCKS_PER_SEC << endl;
