@@ -1,0 +1,53 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <cstring>
+#include <queue>
+#define ll long long
+#define pb push_back
+#define MAXN 10001
+using namespace std;
+vector<int> g[MAXN];
+
+bool bfs(int s, int d) {
+    bool vis[MAXN] = { false };
+    queue<int> q;
+    q.push(s);
+    bool ok = (s == d);
+    while (!q.empty()) {
+        int nd = q.front();
+        q.pop();
+        for (auto nds: g[nd]) {
+            if (nds == d) ok = true;
+            q.push(nds);
+        }
+    }
+    return ok;
+}
+
+int main() {
+    freopen("in", "r", stdin);
+    freopen("out", "w", stdout);
+    ll n, u, v, q, T;
+    cin >> T;
+    while (T--) {
+        cin >> n;
+        for (ll t=0;t<n-1;++t) {
+            cin >> u >> v;
+            --u, --v;
+            g[u].push_back(v);
+            g[v].push_back(u);
+        }
+        int a[n];
+        for (ll t=0;t<n;++t)
+            cin >> a[t];
+
+        ll s, d;
+        cin >> q;
+        while (q--) {
+            cin >> s >> d;
+            --s, --d;
+            cout << bfs(s, d) << endl;
+        }
+    }
+}
